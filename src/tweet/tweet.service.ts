@@ -16,16 +16,16 @@ export class TweetService {
     
 
     getTweets(userId: number){
-        const user=this.usersService.getUserById(userId);
+        // const user=this.usersService.getUserById(userId);
         
 
-        let tweets=this.tweets.filter(tweet=> tweet.userId === userId);
+        // let tweets=this.tweets.filter(tweet=> tweet.userId === userId);
 
-        const response= tweets.map((t)=> {
-            return {...t, user}
-        })
+        // const response= tweets.map((t)=> {
+        //     return {...t, user}
+        // })
 
-        return response;
+        // return response;
 
         
 

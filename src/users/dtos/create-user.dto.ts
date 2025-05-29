@@ -1,22 +1,26 @@
 import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, MinLength } from "class-validator";
+import { createProfileDto } from "src/profile/dtos/create-profile.dto";
 
-export class CreateUserDto{
+export class CreateUserDto {
 
-    @IsNumber()
-    id: number;
-
-
-    @IsString({message:"Name should Be a string Value"})
+    @IsString({ message: "First Name should Be a string Value" })
     @IsNotEmpty()
-    @MinLength(3,{message: "length should be greater than 3 characters"})
-    name: string;
+    @MinLength(3, { message: "length should be greater than 3 characters" })
+    userName: string;
 
-    @IsString()
-    @IsOptional()
-    gender?: string;
 
+
+    @IsNotEmpty()
     @IsEmail()
     email: string;
-    @IsBoolean()
-    isMarried: boolean
+
+    @IsNotEmpty()
+    @MinLength(8, { message: "length should be greater than 8 characters" })
+    password: string
+
+
+    @IsOptional()
+    profile: createProfileDto
+
+
 }

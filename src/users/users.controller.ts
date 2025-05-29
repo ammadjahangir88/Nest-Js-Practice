@@ -14,29 +14,26 @@ export class  UsersController{
 
 
   @Get()
-  getUsers(@Query('page' ,new DefaultValuePipe(1),ParseIntPipe )  page:number, @Query('limit', new DefaultValuePipe(10),ParseIntPipe) limit: number ){
- 
-      console.log('The page is',page,"And the Limit is",limit)
-      return this.usersService.getAllUsers(page,limit)
-  
+  getUsers(){
+    return this.usersService.getAllUsers()
+
   }
 
-  @Get(':id')
-  getUserById(@Param('id', ParseIntPipe) param:any){
+  // @Get(':id')
+  // getUserById(@Param('id', ParseIntPipe) param:any){
    
-    console.log(param)
-    const data=this.usersService.getUserById(param);
-    return data
+  //   console.log(param)
+  //   const data=this.usersService.getUserById(param);
+  //   return data
 
-  }
+  // }
 
   @Post()
   createUser(@Body() user:CreateUserDto){
   
-    console.log("The User is",user)
-    // this.usersService.createUser(user)
+    this.usersService.createUser(user)
 
-    return "A new User has been created"
+   
   }
 
   @Patch()
