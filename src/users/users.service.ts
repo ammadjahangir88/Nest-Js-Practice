@@ -37,44 +37,32 @@ export class UsersService {
 
 
     public async createUser(userDto: CreateUserDto) {
-
-        // Create a profile & Save
-        userDto.profile= userDto.profile ?? {}
-        let profile= this.profileRepository.create(userDto.profile)
-
-        profile= await this.profileRepository.save(profile)
-
-
-
-
-
-
-
-        // Create the User Profile
-        let user=this.userRepository.create(userDto)
-
-        user.profile=profile
-
-        return await this.userRepository.save(user)
-
-        
-
-
-
-        // Set the profile
-
-
-
-
-
-
-        // Save the User object
-
-        
-        
-
-
-
        
+        let user=this.userRepository.create(userDto)
+        return await this.userRepository.save(user)
+       
+    }
+
+    public async deleteUser(id: number){
+        // Find the user with given Id
+        let user= await this.userRepository.findOneBy({id});
+        // Delete the User
+        await this.userRepository.delete(id);
+        // delete the profile
+        await this.profileRepository.delete(user!.profile!.id);
+
+
+        // send a response
+
+
+        return {deleted: true}
+
+
+
+
+
+
+
+
     }
 }

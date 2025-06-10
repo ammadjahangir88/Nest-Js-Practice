@@ -43,8 +43,10 @@ export class User{
     @DeleteDateColumn()
     deletedAt: Date
 
-    @OneToOne(()=>Profile)
-    @JoinColumn()
+    @OneToOne(()=>Profile, (profile)=> profile.user,{
+        cascade: true,
+        eager: true 
+    })
     profile?: Profile
 
 }
