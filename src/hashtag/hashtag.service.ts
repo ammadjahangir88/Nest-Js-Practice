@@ -25,12 +25,18 @@ export class HashtagService {
 
     public async findHashTags(hashtags: number[]){
 
-        
+
         return await this.hashTagRepository.find({
             where: {
                 id: In(hashtags)
             }
         })
 
+    }
+
+    public async deleteHashTag(id: number){
+        await this.hashTagRepository.delete({id: id});
+
+        return {deleted: true, id:id}
     }
 }
